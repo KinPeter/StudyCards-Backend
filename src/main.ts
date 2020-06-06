@@ -1,6 +1,8 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { Logger } from '@nestjs/common';
+
+import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -16,5 +18,6 @@ async function bootstrap() {
 
   const port = process.env.PORT || 3300;
   await app.listen(port);
+  Logger.log(`Listening on port ${port}...`, 'NestApplication');
 }
 bootstrap();
