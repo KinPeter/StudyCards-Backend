@@ -1,7 +1,7 @@
 {
   "name": "study-cards-backend",
   "private": true,
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Backend for my study-cards Nuxt app",
   "license": "MIT",
   "scripts": {

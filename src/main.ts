@@ -11,7 +11,7 @@ async function bootstrap() {
   const swaggerOptions = new DocumentBuilder()
     .setTitle('StudyCards')
     .setDescription('The StudyCards API documentation')
-    .setVersion('0.1')
+    .setVersion('1.0.0')
     .build();
   const swaggerDocument = SwaggerModule.createDocument(app, swaggerOptions);
   SwaggerModule.setup('api', app, swaggerDocument);
