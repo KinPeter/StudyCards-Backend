@@ -9,15 +9,15 @@ import { DeckDto } from './decks.dto';
 export class DecksRepository {
   constructor(@InjectModel('Deck') private readonly deckModel: Model<DeckDocument>) {}
 
-  async findById(id: string): Promise<DeckDocument> {
+  async getOne(id: string): Promise<DeckDocument> {
     return await this.deckModel.findById(id).exec();
   }
 
-  async getAllByUserId(userId: string): Promise<DeckDocument[]> {
+  async getAll(userId: string): Promise<DeckDocument[]> {
     return await this.deckModel.find({ userId }).exec();
   }
 
-  async saveDeck(deckDto: DeckDto): Promise<DeckDocument> {
+  async save(deckDto: DeckDto): Promise<DeckDocument> {
     const deck = new this.deckModel({
       name: deckDto.name,
       link: deckDto.link,
@@ -25,5 +25,19 @@ export class DecksRepository {
       userId: deckDto.userId,
     });
     return await deck.save();
+  }
+
+  async update(deckId: string, deckDto: DeckDto): Promise<DeckDocument> {
+    return await this.deckModel
+      .findByIdAndUpdate(deckId, {
+        name: deckDto.name,
+        link: deckDto.link,
+        progress: deckDto.progress,
+      })
+      .exec();
+  }
+
+  async delete(deckId: string): Promise<DeckDocument> {
+    return await this.deckModel.findByIdAndDelete(deckId).exec();
   }
 }

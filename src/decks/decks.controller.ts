@@ -1,5 +1,18 @@
-import { Controller, Post, Body, ValidationPipe, Get, UseGuards, Param } from '@nestjs/common';
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  Param,
+  Post,
+  Put,
+  UseGuards,
+  ValidationPipe,
+} from '@nestjs/common';
+import {
+  ApiAcceptedResponse,
   ApiBadRequestResponse,
   ApiBearerAuth,
   ApiCreatedResponse,
@@ -67,5 +80,40 @@ export class DecksController {
     @Param('userId') userId: string,
   ): Promise<DeckResource> {
     return this.decksService.createDeck(deckDto);
+  }
+
+  @Put('/:userId/:deckId')
+  @HttpCode(202)
+  @UseGuards(AuthGuard())
+  @ApiOperation({ summary: 'Update a deck' })
+  @ApiBearerAuth()
+  @ApiAcceptedResponse({ description: 'Deck updated' })
+  @ApiNotFoundResponse({ description: 'Deck not found' })
+  @ApiUnauthorizedResponse({ description: 'User is not authenticated' })
+  @ApiForbiddenResponse({ description: 'User has no access rights to the requested content' })
+  @ApiBadRequestResponse({ description: 'Validation error: request data is invalid' })
+  updateDeck(
+    @GetUserAndAuthorize() user: UserDocument,
+    @Body(ValidationPipe) deckDto: DeckDto,
+    @Param('userId') userId: string,
+    @Param('deckId') deckId: string,
+  ): Promise<void> {
+    return this.decksService.updateDeck(deckId, deckDto);
+  }
+
+  @Delete('/:userId/:deckId')
+  @UseGuards(AuthGuard())
+  @ApiOperation({ summary: 'Delete a deck by ID' })
+  @ApiBearerAuth()
+  @ApiOkResponse({ description: 'Deck deleted' })
+  @ApiNotFoundResponse({ description: 'Deck not found' })
+  @ApiUnauthorizedResponse({ description: 'User is not authenticated' })
+  @ApiForbiddenResponse({ description: 'User has no access rights to the requested content' })
+  deleteAccount(
+    @GetUserAndAuthorize() user: UserDocument,
+    @Param('userId') userId: string,
+    @Param('deckId') deckId: string,
+  ): Promise<void> {
+    return this.decksService.deleteDeck(deckId);
   }
 }
