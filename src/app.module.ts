@@ -4,6 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { AuthModule } from './auth/auth.module';
 
 const getConnectionString = () =>
   `mongodb+srv://${process.env.SC_MONGODB_USER}:${process.env.SC_MONGODB_PASS}@studycards-odlzj.gcp.mongodb.net/${process.env.SC_MONGODB_DBNAME}?retryWrites=true&w=majority`;
@@ -18,6 +19,7 @@ const mongooseConfig = {
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     MongooseModule.forRoot(getConnectionString(), mongooseConfig),
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
