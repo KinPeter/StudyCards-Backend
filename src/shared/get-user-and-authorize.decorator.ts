@@ -10,6 +10,6 @@ export const GetUserAndAuthorize = createParamDecorator(
       Logger.warn(`Request for user with id ${authUser} is forbidden!`, 'GetUserAndAuthorize');
       throw new ForbiddenException();
     }
-    return req.user;
+    return req.args[0].user;
   },
 );
