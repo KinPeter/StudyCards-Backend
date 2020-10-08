@@ -23,7 +23,7 @@ import { MyLoggerModule } from 'src/shared/my-logger.module';
     MyLoggerModule,
   ],
   providers: [AuthService, AuthRepository, JwtStrategy],
-  exports: [JwtStrategy, PassportModule, AuthService, AuthRepository],
+  exports: [JwtStrategy, PassportModule, AuthService, AuthRepository, MongooseModule],
   controllers: [AuthController],
 })
 export class AuthModule {}

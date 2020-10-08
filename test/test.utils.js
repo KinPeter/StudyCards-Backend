@@ -1,7 +1,7 @@
 module.exports = {
   user: {
     username: 'api-test',
-    password: 'TestPass123',
+    password: 'pass123',
   },
 
   handleError(error, done) {

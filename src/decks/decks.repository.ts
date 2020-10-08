@@ -40,4 +40,8 @@ export class DecksRepository {
   async delete(deckId: string): Promise<DeckDocument> {
     return await this.deckModel.findByIdAndDelete(deckId).exec();
   }
+
+  async deleteAllDecksForUser(userId: string): Promise<void> {
+    // return await this.deckModel.findByIdAndDelete(deckId).exec();
+  }
 }

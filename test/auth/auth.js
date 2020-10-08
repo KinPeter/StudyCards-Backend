@@ -7,7 +7,7 @@ const expect = chai.expect;
 const request = supertest('http://localhost:3300/auth');
 
 describe('Auth controller POST /register', () => {
-  xit('should register a user and return the ID', (done) => {
+  it('should register a user and return the ID', (done) => {
     request
       .post('/register')
       .send(user)
