@@ -28,5 +28,8 @@ describe('User controller DELETE /{userId}', () => {
     // clean up environment variables
     process.env.SC_TEST_USERID = undefined;
     process.env.SC_TEST_TOKEN = undefined;
+    process.env.SC_TEST_DECK1_ID = undefined;
+    process.env.SC_TEST_DECK2_ID = undefined;
+    process.env.SC_TEST_DECK3_ID = undefined;
   });
 });

@@ -17,7 +17,7 @@ export class UserService {
   async deleteUser(userId: string): Promise<void> {
     await Promise.all([
       this.userRepository.deleteUser(userId),
-      this.decksRepository.deleteAllDecksForUser(userId),
+      this.decksRepository.deleteAllForUser(userId),
     ]);
     this.logger.log(`User account deleted (id: ${userId})`);
   }

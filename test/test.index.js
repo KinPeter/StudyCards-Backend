@@ -1,2 +1,3 @@
 require('./auth/auth.js');
-require('./user/user');
+require('./decks/decks.js');
+require('./user/user.js');

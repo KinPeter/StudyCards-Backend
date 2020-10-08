@@ -41,7 +41,7 @@ export class DecksRepository {
     return await this.deckModel.findByIdAndDelete(deckId).exec();
   }
 
-  async deleteAllDecksForUser(userId: string): Promise<void> {
-    // return await this.deckModel.findByIdAndDelete(deckId).exec();
+  async deleteAllForUser(userId: string): Promise<void> {
+    await this.deckModel.deleteMany({ userId }).exec();
   }
 }
